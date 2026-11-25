@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+	
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIRÉ | Clothing</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header class="header">
+		<div class="header-left">
+			<button class="menu-btn">MENU</button>
+			<button class="search-btn">SEARCH</button>
+		</div>
+	
+		<div class="logo">NOIRÉ</div>
+	
+		<div class="header-right">
+			<button class="cart-btn">
+			<span>BAG</span>
+			<span class="cart-count">(0)</span>
+			</button>
+		</div>
+		
+	</header>
+	
+	<main>
+		<section class="category-page">
+			<div class="category-page-header">
+				<p>EXPLORE OUR COLLECTION</p>
+				<h1>CLOTHING</h1>
+				<a href="index.html">BACK TO HOME &rarr;</a>
+			</div>
+			
+			<div class="product-toolbar">
+				<p>3 PRODUCTS</p>
+				
+				<select id="sort-products">
+					<option value="default">Sort By</option>
+					<option value="low-high">Price: Low to High</option>
+					<option value="high-low">Price: High to Low</option>
+				</select>
+			</div>
+			
+			<div class="products-grid">
+				<div class="product-card" data-price="120">
+					<div class="product-image">
+						<img src="images/clothing1.jpg" alt="Classic Jacket">
+					</div>		
+					<div class="product-info">
+						<h3>Classic Jacket</h3>
+						<p>120$</p>
+					</div>
+				</div>
+			<!--2-->
+				<div class="product-card" data-price="85">
+        			<div class="product-image">
+           				<img src="images/clothing2.jpg" alt="Minimal Shirt">
+       				</div>
+
+        			<div class="product-info" >
+            			<h3>Minimal Shirt</h3>
+            			<p>$85</p>
+        			</div>
+				</div>
+			<!--3-->	
+				<div class="product-card" data-price="160">
+       				<div class="product-image">
+            			<img src="images/clothing3.jpg" alt="Classic Coat">
+       				</div>
+
+        			<div class="product-info">
+            			<h3>Classic Coat</h3>
+            			<p>$160</p>
+        			</div>
+    			</div>
+		</div>
+		</section>
+	
+	
+	</main>
+	
+	<script>
+		
+		let sortSelect = document.getElementById("sort-products");
+		let productsGrid = document.querySelector(".products-grid");
+
+		if (sortSelect && productsGrid) {
+
+    		let products = Array.from(
+        		productsGrid.querySelectorAll(".product-card")
+    		);
+
+    	sortSelect.addEventListener("change", function() {
+
+        let sortedProducts = [...products];
+
+        if (sortSelect.value === "low-high") {
+
+            sortedProducts.sort(function(a, b) {
+                return Number(a.dataset.price) - Number(b.dataset.price);
+            });
+
+        } else if (sortSelect.value === "high-low") {
+
+            sortedProducts.sort(function(a, b) {
+                return Number(b.dataset.price) - Number(a.dataset.price);
+            });
+
+        }
+
+        sortedProducts.forEach(function(product) {
+            productsGrid.appendChild(product);
+        });
+
+    });
+
+}
+
+		
+	
+	</script>
+</body>
+</html>
